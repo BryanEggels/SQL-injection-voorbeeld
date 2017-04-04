@@ -21,6 +21,14 @@ namespace Hacked.Controllers
                 con.Open();
                 string query = "SELECT Email FROM [User] WHERE Email = '" + email + "' AND Password = '" + password + "'";
                 SqlCommand cmd = new SqlCommand(query, con);
+                
+                string goedequery = "SELECT Email FROM [User] WHERE Email = @email AND Password = @password";
+
+                SqlCommand goedecmd = new SqlCommand(goedequery, con);
+
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@password", password);
+                
                 if(cmd.ExecuteScalar() != null)
                 {
                     Session["User"] = email;
