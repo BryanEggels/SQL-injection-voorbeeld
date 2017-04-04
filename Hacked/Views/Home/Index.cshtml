@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (Session["User"] == null)
+{
+
+<form action="/home/login" method="post">
+    <br />
+    <label>E-mail</label><br />
+    <input type="text" name="email" /><br />
+    <label>Wachtwoord</label><br />
+    <input type="password" name="password" /><br /><br />
+    <input type="submit" value="Login" />
+</form>
+
+} else {
+    <h2>Ingelogd als @Session["User"]</h2>
+    <a href="/home/logout">Uitloggen</a>
+}
